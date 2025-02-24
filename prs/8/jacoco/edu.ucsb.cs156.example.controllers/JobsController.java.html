@@ -90,7 +90,7 @@ import org.springframework.web.bind.annotation.RestController;
   @GetMapping(&quot;/logs/{id}&quot;)
   public String getJobLogs(@Parameter(name = &quot;id&quot;, description = &quot;Job ID&quot;) @PathVariable Long id) {
 
-<span class="fc" id="L93">    return jobService.getLongJob(id);</span>
+<span class="fc" id="L93">    return jobService.getJobLogs(id);</span>
   }
 
 
