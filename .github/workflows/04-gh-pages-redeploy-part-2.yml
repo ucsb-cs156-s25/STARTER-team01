@@ -8,7 +8,7 @@ on:
 
 env:
   GH_TOKEN: ${{ github.token }}
-  javadoc_dest: target/site/apidocs
+  javadoc_dest: target/reports/apidocs
   chromatic_dest: frontend/chromatic_static
   jacoco_dest: target/site/jacoco
   pitest_dest: target/pit-reports
@@ -79,7 +79,7 @@ jobs:
         action: JamesIves/github-pages-deploy-action@v4
         attempt_limit: 3
         attempt_delay: 5000
-        with:
+        with: |
           folder: site # The folder the action should deploy.
           branch: gh-pages
           clean: true # Automatically remove deleted files from the deploy branch
