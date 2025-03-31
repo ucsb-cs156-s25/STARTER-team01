@@ -4,43 +4,63 @@ import edu.ucsb.cs156.example.entities.User;
 import edu.ucsb.cs156.example.models.CurrentUser;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 
 /**
  * This is a service that provides information about the current user.
  *
- * It is an abstract class because we have different implementations for testing and production.
+ * It is an abstract class because we have different implementations for testing
+ * and production.
  * 
  */
-<span class="fc" id="L16">public abstract class CurrentUserService {</span>
+<span class="fc" id="L18">public abstract class CurrentUserService {</span>
 
   /**
    * This method returns the current user as a User object.
+   * 
    * @return the current user
    */
   public abstract User getUser();
 
   /**
    * This method returns the current user as a CurrentUser object
+   * 
    * @return the current user
    */
   public abstract CurrentUser getCurrentUser();
 
   /**
    * This method returns the roles of the current user.
+   * 
    * @return a collection of roles
    */
   public abstract Collection&lt;? extends GrantedAuthority&gt; getRoles();
 
   /**
    * This method returns whether the current user is logged in.
+   * 
    * @return whether the current user is logged in
    */
-  
+
   public final boolean isLoggedIn() {
-<span class="fc bfc" id="L42" title="All 2 branches covered.">    return getUser() != null;</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">    return getUser() != null;</span>
   }
 
+
+  /**
+   * This method returns the roles of the current user as a sorted list of strings.
+   * 
+   * @return a collection of roles
+   */
+  public  List&lt;String&gt; getRolesSorted() {
+<span class="fc" id="L58">    Collection&lt;? extends GrantedAuthority&gt; authorities = getRoles();</span>
+<span class="fc" id="L59">    List&lt;String&gt; roles = authorities.stream()</span>
+<span class="fc" id="L60">        .map(GrantedAuthority::getAuthority)</span>
+<span class="fc" id="L61">        .sorted()</span>
+<span class="fc" id="L62">        .toList();</span>
+<span class="fc" id="L63">    return roles;</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
