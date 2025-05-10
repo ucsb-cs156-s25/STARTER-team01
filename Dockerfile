@@ -27,6 +27,8 @@ RUN curl --version
 
 COPY . /home/app
 
+ENV PRODUCTION=true
+ENV NPM_CONFIG_LOGLEVEL=error
 RUN mvn \
    -B \
    -ntp \
